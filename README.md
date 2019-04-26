@@ -61,34 +61,42 @@ Add configure
 
 ```js
 module.exports = {
-	parser: '@typescript-eslint/parser',
-	plugins: ['@typescript-eslint'],
-	extends: [
-		'plugin:@typescript-eslint/recommended',
-		'plugin:prettier/recommended',
-		'react-app'
-	],
-	parserOptions: {
-		ecmaVersion: 2018,
-		sourceType: 'module',
-		project: './tsconfig.json',
-		ecmaFeatures: {
-			jsx: true
-		}
-	},
-	rules: {
-		// typescript-eslint rules
-		'@typescript-eslint/explicit-function-return-type': 'off',
-		'@typescript-eslint/indent': 'off',
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'react-app'
+  ],
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    project: './tsconfig.json',
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
+  rules: {
+    // typescript-eslint rules
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/indent': 'off',
 
-		// Best practices
-		'import/order': ['error', { 'newlines-between': 'always' }],
-		'prettier/prettier': ['error', { singleQuote: true }]
-	}
+    // Best practices
+    'import/order': ['error', { 'newlines-between': 'always' }],
+    'prettier/prettier': ['error', { singleQuote: true }]
+  }
 };
 ```
 
 You free to add rules which you prefer.
+
+Update ```package.json```, add linting scripts:
+```json
+  "scripts": {
+    "lint": "eslint -c ./.eslintrc.js \"src/**/*.{ts,tsx}\"",
+    "lint:fix": "npm run lint --fix"
+  }
+```
 
 #### Add git hooks
 
@@ -103,14 +111,47 @@ or
 Update `package.json`
 
 ```json
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint -c ./.eslintrc.js --fix",
+      "git add"
+    ]
+  }
+```
+
+## Step 4
+
+#### Add routing
+
+Install react-router-dom and @types/react-router-dom
+
+> yarn add react-router-dom
+
+or
+
+> npm i react-router-dom
+
+and
+
+> yarn add -D @types/react-router-dom
+
+or
+
+> npm i -D @types/react-router-dom
+
+Update `tsconfig.json`. Add
+
+```json
 {
-	"husky": {
-		"hooks": {
-			"pre-commit": "tsc --noEmit && lint-staged"
-		}
-	},
-	"lint-staged": {
-		"src/**/*.{js,jsx,ts,tsx}": ["npm run lint:fix", "git add"]
-	}
+  "compilerOptions": {
+    "typeRoots": ["node_modules/@types"]
+  }
 }
 ```
+
+Update file structure and create routes file.

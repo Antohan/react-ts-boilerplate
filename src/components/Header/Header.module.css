@@ -1,0 +1,33 @@
+.host {
+	background-color: #282c34;
+	display: flex;
+	align-items: center;
+	font-size: 1em;
+	color: white;
+}
+
+.logo {
+	animation: logo-spin infinite 20s linear;
+	height: 5vmin;
+	pointer-events: none;
+}
+
+.navigation a {
+	color: #61dafb;
+	margin: 10px;
+}
+
+.navigation a:hover,
+.navigation a:active,
+.navigation a.active {
+	color: #fff;
+}
+
+@keyframes logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
