@@ -2,7 +2,7 @@
 
 This is boilreplate for create React TypeScript project.
 
-(**NOT FINISHED YET! Use with caution.**)
+(**NOT FINISHED YET!**)
 
 #### Included:
 - React 16.8
