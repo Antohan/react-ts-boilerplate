@@ -2,7 +2,6 @@
 	"name": "react-ts-boilerplate",
 	"description": "Boilerplate for create Web Application with using ReactJS  + TypeScript",
 	"version": "0.1.3",
-	"private": true,
 	"dependencies": {
 		"@babel/core": "7.4.3",
 		"@svgr/webpack": "4.1.0",
